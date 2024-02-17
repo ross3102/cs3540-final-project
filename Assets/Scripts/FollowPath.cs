@@ -18,6 +18,7 @@ public class FollowPath : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        animator.SetInteger("WeaponType_int", 0);
         animator.SetFloat("Speed_f", 0.3f);
     }
 
