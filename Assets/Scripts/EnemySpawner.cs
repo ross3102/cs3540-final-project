@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform[] path;
     public float spawnTime = 2; // seconds between each spawn
     public int numEnemies = 5;
+    public float enemySpeed = 1;
     public bool spawnOnStart = true;
 
     public GameObject enemyPrefab;
@@ -41,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
         {
             var newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             newEnemy.transform.SetParent(transform);
-            newEnemy.GetComponent<FollowPath>().SetPath(path, objective);
+            newEnemy.GetComponent<FollowPath>().SetPath(path, objective, enemySpeed);
             timeSinceLastSpawn -= spawnTime;
             numEnemies--;
         }
