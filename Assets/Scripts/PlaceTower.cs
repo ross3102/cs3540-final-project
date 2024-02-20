@@ -9,7 +9,6 @@ public class PlaceTower : MonoBehaviour
 
     GameObject indicator;
     Vector3 indicatorPos;
-    float tiltAngle = 45f;
     
     // Start is called before the first frame update
     void Start()
