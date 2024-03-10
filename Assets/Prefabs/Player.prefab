@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fccdd4bd6e3844209fe7eccc6ac6f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 2
   hitRange: 5
 --- !u!4 &6624452777098496532 stripped
 Transform:
