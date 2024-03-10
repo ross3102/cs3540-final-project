@@ -23,9 +23,9 @@ public class EnemyBehavior : MonoBehaviour
         animator.SetFloat("Speed_f", 0.3f);
     }
 
-    void Update()
+    public int GetHealth()
     {
-        
+        return health;
     }
 
     public void TakeDamage(int damage)
