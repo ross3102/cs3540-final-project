@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 moveDir.y = 0.0f;
+                animator.SetBool("Jump_b", false);
             }
 
         }
