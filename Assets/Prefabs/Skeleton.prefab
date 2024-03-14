@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  lootPrefab: {fileID: 4729912602369655075, guid: 83ddec07a83ea46479fd3b6b726c8bbd, type: 3}
 --- !u!65 &479696039374837172
 BoxCollider:
   m_ObjectHideFlags: 0

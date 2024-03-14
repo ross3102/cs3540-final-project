@@ -6,21 +6,24 @@ public class PlaceTower : MonoBehaviour
 {
     public GameObject towerPrefab;
     public GameObject indicatorPrefab;
+    public int towerCost = 10;
 
     GameObject indicator;
     Vector3 indicatorPos;
+    MoneyManager money;
     
     // Start is called before the first frame update
     void Start()
     {
         indicator = Instantiate(indicatorPrefab);
         indicator.SetActive(false);
+        money = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && money.HasAtLeast(towerCost))
         {
             indicator.SetActive(true);
             RaycastHit hit;
@@ -28,6 +31,7 @@ public class PlaceTower : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.forward, out hit, 50f))
             {
                 Instantiate(towerPrefab, indicatorPos + new Vector3(0, 2, 0), Quaternion.identity);
+                money.SpendMoney(towerCost);
             }
         }
         else
