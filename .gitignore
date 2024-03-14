@@ -81,3 +81,8 @@ crashlytics-build.properties
 
 # External Assets
 Assets/SimpleFantasy*
+
+# WebGL Publisher
+webgl_sharing
+connectwebgl.zip
+/WebGL\ Builds/
