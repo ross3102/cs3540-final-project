@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class MoneyManager : MonoBehaviour
 {
+    public int startingMoney = 10;
     public Text moneyText;
+
     int money;
 
     // Start is called before the first frame update
     void Start()
     {
-        money = 0;
+        money = startingMoney;
         SetMoneyText();
     }
 
