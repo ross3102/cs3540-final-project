@@ -35,11 +35,17 @@ public class EnemyBehavior : MonoBehaviour
         Debug.Log("Enemy took " + damage + " damage, health: " + health);
         if (health <= 0)
         {
-            animator.SetTrigger("Death_b");
-            followPath.SetSpeed(0);
-            GetComponent<Collider>().enabled = false;
-            AudioSource.PlayClipAtPoint(deathSFX, transform.position);
-            Destroy(gameObject, 2.5f);
+            Die();
         }
+    }
+
+    void Die()
+    {
+        animator.SetTrigger("Death_b");
+        followPath.SetSpeed(0);
+        GetComponent<Collider>().enabled = false;
+        Destroy(gameObject, 2.5f);
+        FindObjectOfType<LevelManager>().EnemyDestroyed();
+        AudioSource.PlayClipAtPoint(deathSFX, transform.position);
     }
 }
