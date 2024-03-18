@@ -9,34 +9,39 @@ public class PlaceTower : MonoBehaviour
 
     GameObject indicator;
     Vector3 indicatorPos;
+    bool isValidPlacement;
+    Vector3 recentPlacement;
     
     // Start is called before the first frame update
     void Start()
     {
         indicator = Instantiate(indicatorPrefab);
         indicator.SetActive(false);
+        isValidPlacement = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        indicator.SetActive(true);
         RaycastHit hit;
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, 50f))
         {
             if (hit.collider.CompareTag("Floor"))
             {
+                indicator.SetActive(true);
                 indicatorPos = ClosestGrid(hit.point);
                 indicator.transform.position = ClosestGrid(hit.point);
+                isValidPlacement = true;
             }
             
         }
 
         if (Input.GetButtonDown("Fire2"))
         {
-            if (hit.collider.CompareTag("Floor"))
+            if (isValidPlacement && recentPlacement != indicatorPos)
             {
+                recentPlacement = indicatorPos;
                 Instantiate(towerPrefab, indicatorPos + new Vector3(0, 2, 0), Quaternion.identity);
             }
         }
