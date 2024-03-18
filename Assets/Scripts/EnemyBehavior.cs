@@ -10,12 +10,14 @@ public class EnemyBehavior : MonoBehaviour
 
     Animator animator;
     FollowPath followPath;
+    HealthBar healthBar;
 
     int health;
 
     void Start()
     {
         health = maxHealth;
+        healthBar = GetComponentInChildren<HealthBar>();
 
         followPath = GetComponent<FollowPath>();
         animator = GetComponent<Animator>();
@@ -32,6 +34,7 @@ public class EnemyBehavior : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        healthBar.UpdateHealth(health, maxHealth);
         Debug.Log("Enemy took " + damage + " damage, health: " + health);
         if (health <= 0)
         {
