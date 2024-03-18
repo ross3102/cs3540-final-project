@@ -14,20 +14,28 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
 
     float timeSinceLastSpawn;
+    bool spawning;
 
     void Start()
     {
+        spawning = false;
         if (objective == null) {
             objective = GameObject.FindGameObjectWithTag("Objective");
         }
         LevelManager.enemiesRemaining += numEnemies;
-        if (spawnOnStart) {
-            SpawnEnemy();
-        }
     }
 
     void Update()
     {
+        if (LevelManager.currentPhase != LevelManager.GamePhase.EnemyWave) return;
+        if (!spawning)
+        {
+            spawning = true;
+            timeSinceLastSpawn = 0;
+            if (spawnOnStart) {
+                SpawnEnemy();
+            }
+        }
         timeSinceLastSpawn += Time.deltaTime;
 
         if (timeSinceLastSpawn >= spawnTime)
