@@ -20,10 +20,10 @@ public class EnemySpawner : MonoBehaviour
         if (objective == null) {
             objective = GameObject.FindGameObjectWithTag("Objective");
         }
+        LevelManager.enemiesRemaining += numEnemies;
         if (spawnOnStart) {
             SpawnEnemy();
         }
-        timeSinceLastSpawn = 0;
     }
 
     void Update()
@@ -43,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
             var newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             newEnemy.transform.SetParent(transform);
             newEnemy.GetComponent<FollowPath>().SetPath(path, objective, enemySpeed);
-            timeSinceLastSpawn -= spawnTime;
+            timeSinceLastSpawn = 0;
             numEnemies--;
         }
     }
