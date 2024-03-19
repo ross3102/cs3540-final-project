@@ -6,6 +6,7 @@ public class PlaceTower : MonoBehaviour
 {
     public GameObject towerPrefab;
     public GameObject indicatorPrefab;
+    public AudioClip placeSound;
 
     GameObject indicator;
     Vector3 indicatorPos;
@@ -24,6 +25,7 @@ public class PlaceTower : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
+        if (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement) return;
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, 50f))
         {
@@ -43,6 +45,7 @@ public class PlaceTower : MonoBehaviour
             {
                 recentPlacement = indicatorPos;
                 Instantiate(towerPrefab, indicatorPos + new Vector3(0, 2, 0), Quaternion.identity);
+                AudioSource.PlayClipAtPoint(placeSound, Camera.main.transform.position);   
             }
         }
 

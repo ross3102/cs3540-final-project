@@ -24,7 +24,7 @@ public class ObjectiveHealth : MonoBehaviour
         currentHealth -= damage;
 
         if (currentHealth <= 0) {
-            Debug.Log("Objective destroyed!");
+            FindObjectOfType<LevelManager>().LevelLost();
         }
     }
 }

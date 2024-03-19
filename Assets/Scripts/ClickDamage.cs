@@ -7,6 +7,9 @@ public class ClickDamage : MonoBehaviour
     public int damage;
     public float hitRange = 10f;
 
+    public AudioClip punchHitSFX;
+    public AudioClip punchMissSFX;
+
     Animator animator;
     bool canSwing;
 
@@ -20,6 +23,7 @@ public class ClickDamage : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && canSwing)
         {
+            AudioSource.PlayClipAtPoint(punchHitSFX, Camera.main.transform.position);
             canSwing = false;
             animator.SetFloat("Speed_f", 0f);
             animator.SetInteger("WeaponType_int", 12);
@@ -41,7 +45,7 @@ public class ClickDamage : MonoBehaviour
                 if (clicked.CompareTag("Enemy"))
                 {
                     clicked.GetComponent<EnemyBehavior>().TakeDamage(damage);
-                }
+                } 
             }
         }
     }

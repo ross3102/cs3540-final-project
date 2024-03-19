@@ -12,6 +12,8 @@ public class ShootEnemies : MonoBehaviour
 
     public GameObject projectile;
 
+    public AudioClip shootSFX;
+
     Queue<GameObject> enemiesInRange;
     float lastShot;
     Transform cannonTransform;
@@ -54,6 +56,7 @@ public class ShootEnemies : MonoBehaviour
 
     void ShootTarget()
     {
+        AudioSource.PlayClipAtPoint(shootSFX, transform.position);
         GameObject newProjectile = Instantiate(projectile, cannonTransform.position, cannonTransform.rotation);
         newProjectile.GetComponent<ProjectileBehavior>().SetDamage(damage);
         newProjectile.GetComponent<Rigidbody>().AddForce(cannonTransform.forward * fireSpeed, ForceMode.VelocityChange);
