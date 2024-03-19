@@ -21,6 +21,8 @@ public class PlaceTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement) return;
+
         if (Input.GetButtonDown("Fire2"))
         {
             indicator.SetActive(true);
