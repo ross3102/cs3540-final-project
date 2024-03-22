@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     public int maxHealth = 10;
+    public GameObject lootPrefab;
     public AudioClip deathSFX;
 
     Animator animator;
@@ -44,8 +45,17 @@ public class EnemyBehavior : MonoBehaviour
         animator.SetTrigger("Death_b");
         followPath.SetSpeed(0);
         GetComponent<Collider>().enabled = false;
-        Destroy(gameObject, 2.5f);
+        Invoke("DestroyEnemy", 2.5f);
         FindObjectOfType<LevelManager>().EnemyDestroyed();
         AudioSource.PlayClipAtPoint(deathSFX, transform.position);
+    }
+
+    void DestroyEnemy()
+    {
+        Instantiate(lootPrefab, transform.position, transform.rotation);
+
+        gameObject.SetActive(false);
+
+        Destroy(gameObject, 0.5f);
     }
 }
