@@ -3752,11 +3752,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2140863197}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10, y: -10}
   m_SizeDelta: {x: 160, y: 60}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1197067256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3784,7 +3784,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 2
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -6538,6 +6538,10 @@ PrefabInstance:
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 1197067256}
+    - target: {fileID: 7518516226437387915, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
+      propertyPath: startingMoney
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
