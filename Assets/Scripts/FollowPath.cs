@@ -52,6 +52,7 @@ public class FollowPath : MonoBehaviour
             currentObjective = objective.transform.position;
         } else {
             objective.GetComponent<ObjectiveHealth>().TakeDamage(damage);
+            FindObjectOfType<LevelManager>().EnemyDestroyed();
             Destroy(gameObject);
         }
 

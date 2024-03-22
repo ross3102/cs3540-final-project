@@ -103,6 +103,7 @@ MonoBehaviour:
   fireSpeed: 50
   damage: 1
   projectile: {fileID: 7488368378861601245, guid: c558fa4cbbfcd436ebbd81485b618758, type: 3}
+  shootSFX: {fileID: 8300000, guid: 717abf59d27c340b8aa979339f2cb660, type: 3}
 --- !u!1 &3013604837653638533
 GameObject:
   m_ObjectHideFlags: 0

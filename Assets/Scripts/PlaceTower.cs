@@ -7,6 +7,7 @@ public class PlaceTower : MonoBehaviour
     public GameObject towerPrefab;
     public GameObject indicatorPrefab;
     public int towerCost = 10;
+    public AudioClip placeSound;
 
     GameObject indicator;
     Vector3 indicatorPos;
@@ -23,6 +24,8 @@ public class PlaceTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement) return;
+
         if (Input.GetButtonDown("Fire2") && money.HasAtLeast(towerCost))
         {
             indicator.SetActive(true);
@@ -32,6 +35,7 @@ public class PlaceTower : MonoBehaviour
             {
                 Instantiate(towerPrefab, indicatorPos + new Vector3(0, 2, 0), Quaternion.identity);
                 money.SpendMoney(towerCost);
+                AudioSource.PlayClipAtPoint(placeSound, Camera.main.transform.position);   
             }
         }
         else
