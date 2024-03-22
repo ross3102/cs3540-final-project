@@ -749,11 +749,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: cb1c7101-4050-4963-a0e1-5237b5bfd8b7
+  cloudProjectId: 87070a62-e636-4d53-8f36-e2ec0df72540
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: CS3540_Final
-  organizationId: brobb
+  projectName: cs3540-final-project
+  organizationId: ross3102
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
