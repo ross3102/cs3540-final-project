@@ -18,16 +18,22 @@ public class LevelManager : MonoBehaviour
     public static GamePhase currentPhase;
 
     public Text gameText;
-    public GameObject helpText;
+    public GameObject helpTextBox;
     public string nextLevel;
     public float totalCountDownTime = 5;
 
     float countDownTime;
+    MoneyManager money;
+    PlaceTower placeTower;
+    Text helpText;
 
     void Start()
     {
         isGameOver = false;
         currentPhase = GamePhase.TowerPlacement;
+        money = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyManager>();
+        placeTower = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlaceTower>();
+        helpText = helpTextBox.GetComponentInChildren<Text>();
     }
 
     void Update()
@@ -45,10 +51,15 @@ public class LevelManager : MonoBehaviour
 
     void UpdateTowerPlacement()
     {
+        if (!money.HasAtLeast(placeTower.GetCurrentTowerCost()))
+        {
+            helpText.text = "Your funds are low! Press E to start the enemy wave";
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             currentPhase = GamePhase.CountDown;
-            helpText.SetActive(false);
+            helpTextBox.SetActive(false);
             countDownTime = totalCountDownTime;
             gameText.text = "";
             gameText.gameObject.SetActive(true);
