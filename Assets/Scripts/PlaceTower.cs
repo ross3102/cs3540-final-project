@@ -20,7 +20,7 @@ public class PlaceTower : MonoBehaviour
     
     void Start()
     {
-        indicator = new GameObject();
+        indicator = new GameObject("Indicator");
         var indicatorSquare = Instantiate(indicatorPrefab, indicator.transform.position, Quaternion.identity);
         indicatorSquare.transform.SetParent(indicator.transform);
         var towerDiameter = towerPrefab.GetComponent<ShootEnemies>().radius * 2;
@@ -32,7 +32,12 @@ public class PlaceTower : MonoBehaviour
 
     void Update()
     {
-        if (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement) return;
+        if (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement) {
+            indicator.SetActive(false);
+            return;
+        }
+
+        indicator.SetActive(true);
 
         if (Input.GetButtonDown("Fire2") && money.HasAtLeast(towerCost))
         {
@@ -51,24 +56,34 @@ public class PlaceTower : MonoBehaviour
 
             indicatorPos = lookPoint;
 
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 50f))
-            {
-                if (hit.collider.CompareTag("Floor"))
-                {
-                    indicatorValid = true;
-                }
-                else
-                {
-                    indicatorValid = false;
-                }
-            }
-            else
-            {
-                indicatorValid = false;
-            }
+            indicatorValid = CanPlaceTower();
         }
 
         indicator.transform.position = indicatorPos;
         indicator.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = indicatorValid ? Color.green : Color.red;
+    }
+
+    bool CanPlaceTower()
+    {
+        RaycastHit hit;
+        if (!money.HasAtLeast(towerCost))
+        {
+            return false;
+        }
+        if (!Physics.Raycast(transform.position, transform.forward, out hit, 50f))
+        {
+            return false;
+        }
+        if (!hit.collider.CompareTag("Floor"))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public int GetCurrentTowerCost()
+    {
+        return towerCost;
     }
 }
