@@ -8,7 +8,7 @@ TagManager:
   - Enemy
   - Floor
   - Road
-  - UpgradePanel
+  - UpgradesPanel
   layers:
   - Default
   - TransparentFX

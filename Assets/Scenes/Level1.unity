@@ -1369,7 +1369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameText: {fileID: 875860254}
   helpTextBox: {fileID: 2002998025}
-  upgradePanel: {fileID: 839403478}
+  upgradesPanel: {fileID: 839403478}
   nextLevel: 
   totalCountDownTime: 5
 --- !u!4 &339025935
