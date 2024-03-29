@@ -36,6 +36,9 @@ public class UpgradableTower : MonoBehaviour
     }
 
     public AudioClip upgradeSound;
+    public GameObject upgradePanelPrefab;
+    public GameObject radiusPreviewPrefab;
+
     public List<KeyValuePair<UpgradeType, Upgrade[]>> upgradeValueList = new()
     {
         new() {
@@ -70,19 +73,21 @@ public class UpgradableTower : MonoBehaviour
 
     SortedDictionary<UpgradeType, Upgrade[]> upgradeValues = new();
 
-    public GameObject upgradePanelPrefab;
-    
     SortedDictionary<UpgradeType, int> upgradeLevels = new();
 
     GameObject upgradesPanel;
     ShootEnemies shootEnemies;
     MoneyManager money;
+    LevelManager levelManager;
+
+    List<GameObject> tempObjects = new();
 
     bool canUpgrade = false;
 
     void Start()
     {
-        upgradesPanel = FindObjectOfType<LevelManager>().upgradesPanel;
+        levelManager = FindObjectOfType<LevelManager>();
+        upgradesPanel = levelManager.upgradesPanel;
         shootEnemies = GetComponent<ShootEnemies>();
         money = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyManager>();
         canUpgrade = false;
@@ -115,6 +120,7 @@ public class UpgradableTower : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C) && money.HasAtLeast(10))
             {
                 DoUpgrade(UpgradeType.Radius, upgradeLevels[UpgradeType.Radius] + 1);
+                ShowRadius();
                 SetupMenu();
             }
         }
@@ -162,10 +168,15 @@ public class UpgradableTower : MonoBehaviour
             UpgradeTitle(upgradeType);
         panel.transform.Find("UpgradeCost").GetComponent<TextMeshProUGUI>().text =
             "$" + upgrades[curLevel + 1].cost.ToString();
-        panel.transform.Find("Equation").Find("OldValue").GetComponent<TextMeshProUGUI>().text =
+        var equation = panel.transform.Find("Equation");
+        equation.Find("OldValue").GetComponent<TextMeshProUGUI>().text =
             DisplayValue(upgradeType, curLevel);
-        panel.transform.Find("Equation").Find("NewValue").GetComponent<TextMeshProUGUI>().text =
+        equation.Find("NewValue").GetComponent<TextMeshProUGUI>().text =
             DisplayValue(upgradeType, curLevel + 1);
+        equation.Find("OldLevel").GetComponent<TextMeshProUGUI>().text =
+            "lv " + (curLevel + 1);
+        equation.Find("NewLevel").GetComponent<TextMeshProUGUI>().text =
+            "lv " + (curLevel + 2);
         panel.name = upgradeType.ToString() + "Panel";
         return panel;
     }
@@ -221,19 +232,53 @@ public class UpgradableTower : MonoBehaviour
         upgradeLevels[upgradeType] = level;
     }
 
+    void RemoveRadius()
+    {
+        foreach (var obj in tempObjects)
+        {
+            Destroy(obj);
+        }
+    }
+
+    void ShowRadius()
+    {
+        RemoveRadius();
+        var curLevel = upgradeLevels[UpgradeType.Radius];
+        var curRadius = shootEnemies.radius;
+        var groundPos = transform.position;
+        groundPos.y = 0;
+        var radiusPreview1 = Instantiate(radiusPreviewPrefab, groundPos, Quaternion.identity);
+        radiusPreview1.transform.localScale =
+            new Vector3(curRadius * 2, 1, curRadius * 2);
+        tempObjects.Add(radiusPreview1);
+        if (curLevel < upgradeValues[UpgradeType.Radius].Length - 1)
+        {
+            var nextRadius = upgradeValues[UpgradeType.Radius][curLevel + 1].intValue;
+            var radiusPreview2 = Instantiate(radiusPreviewPrefab, groundPos, Quaternion.identity);
+            radiusPreview2.transform.localScale =
+                new Vector3(nextRadius * 2, 1, nextRadius * 2);
+            radiusPreview2.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.25f);
+            tempObjects.Add(radiusPreview2);
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             canUpgrade = true;
+            levelManager.SetPlaceTowerDisabled(true);
+            ShowRadius();
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             canUpgrade = false;
+            levelManager.SetPlaceTowerDisabled(false);
+            RemoveRadius();
         }
     }
 }

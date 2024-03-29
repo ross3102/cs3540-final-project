@@ -15,6 +15,7 @@ public class PlaceTower : MonoBehaviour
     GameObject indicator;
     Vector3 indicatorPos;
     MoneyManager money;
+    LevelManager levelManager;
 
     bool indicatorValid;
     
@@ -28,11 +29,12 @@ public class PlaceTower : MonoBehaviour
         var radiusPreview = Instantiate(radiusPreviewPrefab, indicator.transform.position, Quaternion.identity);
         radiusPreview.transform.SetParent(indicator.transform);
         money = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyManager>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     void Update()
     {
-        if (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement && LevelManager.currentPhase != LevelManager.GamePhase.EnemyWave) {
+        if (levelManager.PlaceTowerDisabled() || (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement && LevelManager.currentPhase != LevelManager.GamePhase.EnemyWave)) {
             indicator.SetActive(false);
             return;
         }

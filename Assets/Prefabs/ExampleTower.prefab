@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeSound: {fileID: 8300000, guid: 4a875bb8ccf524f0da5bc25e4dec9671, type: 3}
+  upgradePanelPrefab: {fileID: 3011294613630576606, guid: 0795364544abf49c28feaa3a6c61575d, type: 3}
+  radiusPreviewPrefab: {fileID: 3626549813088479941, guid: 41c9a74c18a8a4055ada28f93a7805a7, type: 3}
   upgradeValueList:
   - key: 0
     value:
@@ -143,9 +145,8 @@ MonoBehaviour:
     value:
     - cost: 0
       value: 7
-    - cost: 10
-      value: 8
-  upgradePanelPrefab: {fileID: 3011294613630576606, guid: 0795364544abf49c28feaa3a6c61575d, type: 3}
+    - cost: 15
+      value: 10
 --- !u!1 &3013604837653638533
 GameObject:
   m_ObjectHideFlags: 0

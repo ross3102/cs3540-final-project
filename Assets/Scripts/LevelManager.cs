@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
     MoneyManager money;
     PlaceTower placeTower;
     Text helpText;
+    bool placeTowerDisabled = false;
 
     void Start()
     {
@@ -123,5 +124,15 @@ public class LevelManager : MonoBehaviour
         {
             LevelBeat();
         }
+    }
+
+    public void SetPlaceTowerDisabled(bool disabled)
+    {
+        placeTowerDisabled = disabled;
+    }
+
+    public bool PlaceTowerDisabled()
+    {
+        return placeTowerDisabled;
     }
 }
