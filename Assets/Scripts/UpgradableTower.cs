@@ -82,15 +82,12 @@ public class UpgradableTower : MonoBehaviour
 
     List<GameObject> tempObjects = new();
 
-    bool canUpgrade = false;
-
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
         upgradesPanel = levelManager.upgradesPanel;
         shootEnemies = GetComponent<ShootEnemies>();
         money = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyManager>();
-        canUpgrade = false;
         foreach (KeyValuePair<UpgradeType, Upgrade[]> upgrade in upgradeValueList)
         {
             upgradeValues[upgrade.key] = upgrade.value;
@@ -101,11 +98,10 @@ public class UpgradableTower : MonoBehaviour
 
     void Update()
     {
-        if (canUpgrade)
-        {
-            if (!upgradesPanel.activeSelf)
+
+            if (!upgradesPanel.activeInHierarchy)
             {
-                SetupMenu();
+                
             }
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -123,11 +119,6 @@ public class UpgradableTower : MonoBehaviour
                 ShowRadius();
                 SetupMenu();
             }
-        }
-        else
-        {
-            upgradesPanel.SetActive(false);
-        }
     }
 
     void SetupMenu()
@@ -266,7 +257,7 @@ public class UpgradableTower : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            canUpgrade = true;
+            SetupMenu();            
             levelManager.SetPlaceTowerDisabled(true);
             ShowRadius();
         }
@@ -276,7 +267,7 @@ public class UpgradableTower : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            canUpgrade = false;
+            upgradesPanel.SetActive(false);
             levelManager.SetPlaceTowerDisabled(false);
             RemoveRadius();
         }
