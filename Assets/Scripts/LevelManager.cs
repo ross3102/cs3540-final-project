@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
 
     public Text gameText;
     public GameObject helpTextBox;
+    public GameObject upgradePanel;
     public string nextLevel;
     public float totalCountDownTime = 5;
 
