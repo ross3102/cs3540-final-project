@@ -98,27 +98,16 @@ public class UpgradableTower : MonoBehaviour
 
     void Update()
     {
-
-            if (!upgradesPanel.activeInHierarchy)
+        foreach (UpgradeType upgradeType in Enum.GetValues(typeof(UpgradeType)))
+        {
+            if (Input.GetKeyDown(Key(upgradeType)))
             {
-                
-            }
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                DoUpgrade(UpgradeType.FireRate, upgradeLevels[UpgradeType.FireRate] + 1);
+                DoUpgrade(upgradeType, upgradeLevels[upgradeType] + 1);
                 SetupMenu();
-            }
-            if (Input.GetKeyDown(KeyCode.X) && money.HasAtLeast(10))
-            {
-                DoUpgrade(UpgradeType.Damage, upgradeLevels[UpgradeType.Damage] + 1);
-                SetupMenu();
-            }
-            if (Input.GetKeyDown(KeyCode.C) && money.HasAtLeast(10))
-            {
-                DoUpgrade(UpgradeType.Radius, upgradeLevels[UpgradeType.Radius] + 1);
                 ShowRadius();
-                SetupMenu();
+                return;
             }
+        }
     }
 
     void SetupMenu()
@@ -132,7 +121,6 @@ public class UpgradableTower : MonoBehaviour
 
         int i = 0;
 
-        // iterate over upgradeLevels keys
         foreach (UpgradeType upgradeType in upgradeLevels.Keys)
         {
             GameObject panel = MakePanel(upgradeType);
@@ -160,6 +148,8 @@ public class UpgradableTower : MonoBehaviour
         panel.transform.Find("UpgradeCost").GetComponent<TextMeshProUGUI>().text =
             "$" + upgrades[curLevel + 1].cost.ToString();
         var equation = panel.transform.Find("Equation");
+        equation.Find("Key").Find("KeyLabel").GetComponent<TextMeshProUGUI>().text =
+            Key(upgradeType).ToString();
         equation.Find("OldValue").GetComponent<TextMeshProUGUI>().text =
             DisplayValue(upgradeType, curLevel);
         equation.Find("NewValue").GetComponent<TextMeshProUGUI>().text =
@@ -170,6 +160,17 @@ public class UpgradableTower : MonoBehaviour
             "lv " + (curLevel + 2);
         panel.name = upgradeType.ToString() + "Panel";
         return panel;
+    }
+
+    KeyCode Key(UpgradeType upgradeType)
+    {
+        return upgradeType switch
+        {
+            UpgradeType.FireRate => KeyCode.Z,
+            UpgradeType.Damage => KeyCode.X,
+            UpgradeType.Radius => KeyCode.C,
+            _ => KeyCode.None,
+        };
     }
 
     string UpgradeTitle(UpgradeType upgradeType)
