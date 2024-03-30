@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlaceTower : MonoBehaviour
 {
-    public GameObject towerPrefab;
+    public GameObject[] towerPrefabs;
     public GameObject indicatorPrefab;
     public GameObject radiusPreviewPrefab;
-    public int towerCost = 10;
+    public int baseTowerCost = 10;
     public AudioClip placeSound;
 
     public Color validColor, invalidColor;
@@ -17,17 +17,22 @@ public class PlaceTower : MonoBehaviour
     MoneyManager money;
 
     bool indicatorValid;
+
+    int towerIndex = 0;
+
+    int towerCost;
     
     void Start()
     {
         indicator = new GameObject("Indicator");
         var indicatorSquare = Instantiate(indicatorPrefab, indicator.transform.position, Quaternion.identity);
         indicatorSquare.transform.SetParent(indicator.transform);
-        var towerDiameter = towerPrefab.GetComponent<ShootEnemies>().radius * 2;
+        var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
         radiusPreviewPrefab.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
         var radiusPreview = Instantiate(radiusPreviewPrefab, indicator.transform.position, Quaternion.identity);
         radiusPreview.transform.SetParent(indicator.transform);
         money = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyManager>();
+        towerCost = baseTowerCost;
     }
 
     void Update()
@@ -37,13 +42,24 @@ public class PlaceTower : MonoBehaviour
             return;
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            towerIndex = 0;
+            towerCost = baseTowerCost;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            towerIndex = 1;
+            towerCost = baseTowerCost * 2;
+        }
+
         indicator.SetActive(true);
 
         if (Input.GetButtonDown("Fire2") && money.HasAtLeast(towerCost))
         {
             if (indicatorValid)
             {
-                Instantiate(towerPrefab, indicatorPos + new Vector3(0, 2, 0), Quaternion.identity);
+                Instantiate(towerPrefabs[towerIndex], indicatorPos + new Vector3(0, 2, 0), Quaternion.identity);
                 money.SpendMoney(towerCost);
                 AudioSource.PlayClipAtPoint(placeSound, Camera.main.transform.position);   
             }
