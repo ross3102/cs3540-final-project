@@ -83,7 +83,7 @@ public class PlaceTower : MonoBehaviour
         }
 
         indicator.transform.position = indicatorPos;
-        indicator.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = indicatorValid ? Color.green : Color.red;
+        indicator.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = indicatorValid ? validColor : invalidColor;
     }
 
     bool CanPlaceTower()
