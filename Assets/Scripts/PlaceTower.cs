@@ -14,6 +14,7 @@ public class PlaceTower : MonoBehaviour
 
     GameObject indicator;
     Vector3 indicatorPos;
+    GameObject radiusPreview;
     MoneyManager money;
 
     bool indicatorValid;
@@ -29,7 +30,7 @@ public class PlaceTower : MonoBehaviour
         indicatorSquare.transform.SetParent(indicator.transform);
         var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
         radiusPreviewPrefab.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
-        var radiusPreview = Instantiate(radiusPreviewPrefab, indicator.transform.position, Quaternion.identity);
+        radiusPreview = Instantiate(radiusPreviewPrefab, indicator.transform.position, Quaternion.identity);
         radiusPreview.transform.SetParent(indicator.transform);
         money = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyManager>();
         towerCost = baseTowerCost;
@@ -46,11 +47,15 @@ public class PlaceTower : MonoBehaviour
         {
             towerIndex = 0;
             towerCost = baseTowerCost;
+            var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
+            radiusPreview.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             towerIndex = 1;
             towerCost = baseTowerCost * 2;
+            var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
+            radiusPreview.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
         }
 
         indicator.SetActive(true);
