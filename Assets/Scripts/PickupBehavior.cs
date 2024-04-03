@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PickupBehavior : MonoBehaviour
 {
-    public int value = 10;
+    public int minVal = 1;
+    public int maxVal = 15;
+    public int value;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        value = Random.Range(minVal, maxVal);
     }
 
     // Update is called once per frame
