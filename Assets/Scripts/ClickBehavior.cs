@@ -39,7 +39,6 @@ public class ClickBehavior : MonoBehaviour
                 }
             }
 
-            AudioSource.PlayClipAtPoint(punchHitSFX, Camera.main.transform.position);
             canSwing = false;
             animator.SetFloat("Speed_f", 0f);
             animator.SetInteger("WeaponType_int", 12);
