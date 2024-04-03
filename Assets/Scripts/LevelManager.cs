@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
 
     public Text gameText;
     public GameObject helpTextBox;
+    public GameObject upgradesPanel;
     public string nextLevel;
     public float totalCountDownTime = 5;
 
@@ -26,6 +27,7 @@ public class LevelManager : MonoBehaviour
     MoneyManager money;
     PlaceTower placeTower;
     Text helpText;
+    bool isPlaceTowerDisabled = false;
 
     void Start()
     {
@@ -122,5 +124,15 @@ public class LevelManager : MonoBehaviour
         {
             LevelBeat();
         }
+    }
+
+    public void SetIsPlaceTowerDisabled(bool disabled)
+    {
+        isPlaceTowerDisabled = disabled;
+    }
+
+    public bool IsPlaceTowerDisabled()
+    {
+        return isPlaceTowerDisabled;
     }
 }
