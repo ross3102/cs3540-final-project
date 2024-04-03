@@ -31,6 +31,8 @@ public class KingAI : MonoBehaviour
     private NavMeshAgent agent;
     private Animator anim;
 
+    private NPCText text;
+
 
     void Start()
     {
@@ -46,6 +48,8 @@ public class KingAI : MonoBehaviour
 
         agent.SetDestination(player.transform.position);
         agent.stoppingDistance = 0f;
+
+        text = GetComponentInChildren<NPCText>();
     }
 
     void Update()
@@ -65,23 +69,13 @@ public class KingAI : MonoBehaviour
                 UpdateDialogueState();
                 break;
         }
-        //if (distanceToPlayer > 5f)
-        //{
-        //    agent.speed = 3.5f;
-        //    agent.SetDestination(player.position);
-        //    anim.SetFloat("Speed_f", 0.7f);
-        //    anim.SetInteger("Animation_int", 0);
-        //} else
-        //{
-        //    anim.SetFloat("Speed_f", 0f);
-        //    anim.SetInteger("Animation_int", 1);
-        //}
     }
 
     void UpdateWanderState()
     {
+        text.ShowText(false);
         agent.speed = 3f;
-        anim.SetFloat("Speed_f", 0.5f);
+        anim.SetFloat("Speed_f", 0.4f);
         anim.SetInteger("Animation_int", 0);
         agent.stoppingDistance = 1f;
 
@@ -108,6 +102,7 @@ public class KingAI : MonoBehaviour
 
     void UpdateChaseState()
     {
+        text.ShowText(false);
         agent.speed = 4f;
         agent.SetDestination(player.transform.position);
         anim.SetFloat("Speed_f", 0.7f);
@@ -136,6 +131,7 @@ public class KingAI : MonoBehaviour
     {
         //print("attack");
 
+        text.ShowText(true);
         nextDestination = player.transform.position;
         agent.stoppingDistance = dialogueRange;
 

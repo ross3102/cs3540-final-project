@@ -46,4 +46,9 @@ public class NPCText : MonoBehaviour
 
         npcText.text = helpMessages[currentIndex];
     }
+
+    public void ShowText(bool isShown)
+    {
+        npcText.enabled = isShown;
+    }
 }
