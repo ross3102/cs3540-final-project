@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641228, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1380,7 +1380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameText: {fileID: 743600737}
   helpTextBox: {fileID: 1657364765}
-  upgradesPanel: {fileID: 839403478}
+  upgradesPanel: {fileID: 1037555882}
   nextLevel: 
   totalCountDownTime: 5
 --- !u!4 &339025935
@@ -2992,11 +2992,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3935679628188766067, guid: aef305ada49824940b29bfc1bac2f67f, type: 3}
   m_PrefabInstance: {fileID: 827547350}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &839403478 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 416517548310416708, guid: d69718e39a6ab431bbb8299b5784e104, type: 3}
-  m_PrefabInstance: {fileID: 1685759166}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &857386577
 GameObject:
   m_ObjectHideFlags: 0
@@ -3414,6 +3409,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d69718e39a6ab431bbb8299b5784e104, type: 3}
+--- !u!1 &1037555882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 416517548310416708, guid: d69718e39a6ab431bbb8299b5784e104, type: 3}
+  m_PrefabInstance: {fileID: 1037555881}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1048608291
 PrefabInstance:
   m_ObjectHideFlags: 0
