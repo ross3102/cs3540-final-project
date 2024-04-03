@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - Road
   - UpgradesPanel
+  - NPC
   layers:
   - Default
   - TransparentFX
