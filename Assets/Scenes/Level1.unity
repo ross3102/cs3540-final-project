@@ -6303,7 +6303,7 @@ PrefabInstance:
     - target: {fileID: -4499298652373566538, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
       propertyPath: punchMissSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 67d3e252596a04dc99e8c7d6bb0f241a, type: 3}
+      objectReference: {fileID: 8300000, guid: 2d5f7c7167ec841f18c3ef83e46b4095, type: 3}
     - target: {fileID: 514871343542922457, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
       propertyPath: placeSound
       value: 

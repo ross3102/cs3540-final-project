@@ -23,7 +23,6 @@ public class ClickDamage : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && canSwing)
         {
-            AudioSource.PlayClipAtPoint(punchHitSFX, Camera.main.transform.position);
             canSwing = false;
             animator.SetFloat("Speed_f", 0f);
             animator.SetInteger("WeaponType_int", 12);
@@ -44,9 +43,21 @@ public class ClickDamage : MonoBehaviour
                 var clicked = raycastHit.transform.gameObject;
                 if (clicked.CompareTag("Enemy"))
                 {
+                    AudioSource.PlayClipAtPoint(punchHitSFX, Camera.main.transform.position);
                     clicked.GetComponent<EnemyBehavior>().TakeDamage(damage);
-                } 
+                } else
+                {
+                    AudioSource.PlayClipAtPoint(punchMissSFX, Camera.main.transform.position);
+                }
             }
+            else
+            {
+                AudioSource.PlayClipAtPoint(punchMissSFX, Camera.main.transform.position);
+            }
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(punchMissSFX, Camera.main.transform.position);
         }
     }
 
