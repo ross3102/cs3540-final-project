@@ -12,8 +12,12 @@ public class KingAI : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
         anim = GetComponent<Animator>();
+        anim.SetInteger("WeaponType_int", 0);
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
         agent.SetDestination(player.position);
         agent.stoppingDistance = 5f;
     }
