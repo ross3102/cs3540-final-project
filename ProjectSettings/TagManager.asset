@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Floor
   - Road
+  - NPC
   layers:
   - Default
   - TransparentFX
