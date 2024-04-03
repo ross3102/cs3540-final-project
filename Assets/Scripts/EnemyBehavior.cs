@@ -55,7 +55,12 @@ public class EnemyBehavior : MonoBehaviour
 
     void DestroyEnemy()
     {
-        Instantiate(lootPrefab, transform.position, transform.rotation);
+        int dropRate = Random.Range(0, 6);
+
+        if (dropRate > 3)
+        {
+            Instantiate(lootPrefab, transform.position, transform.rotation);
+        }
 
         gameObject.SetActive(false);
 
