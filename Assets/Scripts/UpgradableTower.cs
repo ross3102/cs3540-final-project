@@ -119,21 +119,13 @@ public class UpgradableTower : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        int i = 0;
-
         foreach (UpgradeType upgradeType in upgradeLevels.Keys)
         {
-            GameObject panel = MakePanel(upgradeType);
-            if (panel != null)
-            {
-                panel.transform.SetParent(upgrades.transform);
-                panel.transform.localPosition = new Vector3(0, -225*i, 0);
-                i++;
-            }
+            MakePanel(upgradeType, upgrades);
         }
     }
 
-    GameObject MakePanel(UpgradeType upgradeType)
+    GameObject MakePanel(UpgradeType upgradeType, Transform parent)
     {
         int curLevel = upgradeLevels[upgradeType];
         Upgrade[] upgrades = upgradeValues[upgradeType];
@@ -142,7 +134,7 @@ public class UpgradableTower : MonoBehaviour
             return null;
         }
 
-        GameObject panel = Instantiate(upgradePanelPrefab, upgradesPanel.transform);
+        GameObject panel = Instantiate(upgradePanelPrefab, parent, worldPositionStays: false);
         panel.transform.Find("UpgradeTitle").GetComponent<TextMeshProUGUI>().text =
             UpgradeTitle(upgradeType);
         panel.transform.Find("UpgradeCost").GetComponent<TextMeshProUGUI>().text =
