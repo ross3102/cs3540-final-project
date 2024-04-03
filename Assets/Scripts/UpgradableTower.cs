@@ -259,7 +259,7 @@ public class UpgradableTower : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             SetupMenu();            
-            levelManager.SetPlaceTowerDisabled(true);
+            levelManager.SetIsPlaceTowerDisabled(true);
             ShowRadius();
         }
     }
@@ -269,7 +269,7 @@ public class UpgradableTower : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             upgradesPanel.SetActive(false);
-            levelManager.SetPlaceTowerDisabled(false);
+            levelManager.SetIsPlaceTowerDisabled(false);
             RemoveRadius();
         }
     }

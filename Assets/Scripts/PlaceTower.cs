@@ -34,7 +34,7 @@ public class PlaceTower : MonoBehaviour
 
     void Update()
     {
-        if (levelManager.PlaceTowerDisabled() || (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement && LevelManager.currentPhase != LevelManager.GamePhase.EnemyWave)) {
+        if (levelManager.IsPlaceTowerDisabled() || (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement && LevelManager.currentPhase != LevelManager.GamePhase.EnemyWave)) {
             indicator.SetActive(false);
             return;
         }
