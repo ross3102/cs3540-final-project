@@ -17,21 +17,21 @@ public class ShootEnemies : MonoBehaviour
     Queue<GameObject> enemiesInRange;
     float lastShot;
     Transform cannonTransform;
-    CapsuleCollider collider;
+    CapsuleCollider radiusTrigger;
 
     // Start is called before the first frame update
     void Start()
     {
         enemiesInRange = new Queue<GameObject>();
         lastShot = Time.time;
-        collider = GetComponent<CapsuleCollider>();
-        collider.radius = radius;
+        radiusTrigger = GetComponent<CapsuleCollider>();
+        radiusTrigger.radius = radius;
         cannonTransform = transform.GetChild(1);
     }
 
     void Update()
     {
-        collider.radius = radius;
+        radiusTrigger.radius = radius;
         while (enemiesInRange.Count > 0 && TargetGone(enemiesInRange.Peek()))
         {
             enemiesInRange.Dequeue();
