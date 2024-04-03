@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Floor
   - Road
+  - UpgradesPanel
   - NPC
   layers:
   - Default

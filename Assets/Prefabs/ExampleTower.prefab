@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -656273504774676106}
   - component: {fileID: 4516804168475024593}
   - component: {fileID: 4751627076220990659}
+  - component: {fileID: -5987102607606950172}
   m_Layer: 0
   m_Name: ExampleTower
   m_TagString: Untagged
@@ -104,6 +105,48 @@ MonoBehaviour:
   damage: 1
   projectile: {fileID: 7488368378861601245, guid: c558fa4cbbfcd436ebbd81485b618758, type: 3}
   shootSFX: {fileID: 8300000, guid: 717abf59d27c340b8aa979339f2cb660, type: 3}
+--- !u!114 &-5987102607606950172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574156200504944524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824463b79e1824279ba814bcce642a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeSound: {fileID: 8300000, guid: 4a875bb8ccf524f0da5bc25e4dec9671, type: 3}
+  upgradePanelPrefab: {fileID: 3011294613630576606, guid: 0795364544abf49c28feaa3a6c61575d, type: 3}
+  radiusPreviewPrefab: {fileID: 3626549813088479941, guid: 41c9a74c18a8a4055ada28f93a7805a7, type: 3}
+  upgradeValueList:
+  - key: 0
+    value:
+    - cost: 0
+      value: 1
+    - cost: 10
+      value: 0.9
+    - cost: 15
+      value: 0.8
+    - cost: 20
+      value: 0.7
+  - key: 1
+    value:
+    - cost: 0
+      value: 1
+    - cost: 20
+      value: 2
+    - cost: 30
+      value: 3
+    - cost: 50
+      value: 4
+  - key: 2
+    value:
+    - cost: 0
+      value: 7
+    - cost: 15
+      value: 10
 --- !u!1 &691603481358814749
 GameObject:
   m_ObjectHideFlags: 0

@@ -1380,6 +1380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameText: {fileID: 743600737}
   helpTextBox: {fileID: 1657364765}
+  upgradesPanel: {fileID: 839403478}
   nextLevel: 
   totalCountDownTime: 5
 --- !u!4 &339025935
@@ -2990,6 +2991,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3935679628188766067, guid: aef305ada49824940b29bfc1bac2f67f, type: 3}
   m_PrefabInstance: {fileID: 827547350}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &839403478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 416517548310416708, guid: d69718e39a6ab431bbb8299b5784e104, type: 3}
+  m_PrefabInstance: {fileID: 1685759166}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &857386577
 GameObject:
