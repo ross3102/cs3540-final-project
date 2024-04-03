@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickDamage : MonoBehaviour
+public class ClickBehavior : MonoBehaviour
 {
     public int damage;
     public float hitRange = 10f;
@@ -23,6 +23,22 @@ public class ClickDamage : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && canSwing)
         {
+            RaycastHit raycastHit;
+
+            if (Physics.Raycast(transform.position, transform.forward, out raycastHit, 5.5f))
+            {
+                if (raycastHit.transform != null)
+                {
+                    var clicked = raycastHit.transform.gameObject;
+                    if (clicked.CompareTag("NPC"))
+                    {
+                        NPCText text = clicked.GetComponentInChildren<NPCText>();
+                        text.CycleText();
+                        return;
+                    }
+                }
+            }
+
             AudioSource.PlayClipAtPoint(punchHitSFX, Camera.main.transform.position);
             canSwing = false;
             animator.SetFloat("Speed_f", 0f);
@@ -30,6 +46,7 @@ public class ClickDamage : MonoBehaviour
 
             Invoke("RegisterHit", 0.5f);
             Invoke("StopSwinging", 1f);
+            
         }
     }
 
