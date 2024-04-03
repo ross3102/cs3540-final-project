@@ -61,9 +61,21 @@ public class ClickBehavior : MonoBehaviour
                 var clicked = raycastHit.transform.gameObject;
                 if (clicked.CompareTag("Enemy"))
                 {
+                    AudioSource.PlayClipAtPoint(punchHitSFX, Camera.main.transform.position);
                     clicked.GetComponent<EnemyBehavior>().TakeDamage(damage);
-                } 
+                } else
+                {
+                    AudioSource.PlayClipAtPoint(punchMissSFX, Camera.main.transform.position);
+                }
             }
+            else
+            {
+                AudioSource.PlayClipAtPoint(punchMissSFX, Camera.main.transform.position);
+            }
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(punchMissSFX, Camera.main.transform.position);
         }
     }
 

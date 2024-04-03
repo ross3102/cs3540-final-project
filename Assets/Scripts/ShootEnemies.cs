@@ -46,10 +46,6 @@ public class ShootEnemies : MonoBehaviour
                 ShootTarget();
             }
         }
-        else
-        {
-            cannonTransform.localRotation = Quaternion.Euler(-90, 0, 0);
-        }
     }
 
     bool TargetGone(GameObject target)
