@@ -505,6 +505,7 @@ GameObject:
   - component: {fileID: 7368959078518261785}
   - component: {fileID: 2501119096570047006}
   - component: {fileID: 7229093819107611221}
+  - component: {fileID: -7370151879609545542}
   m_Layer: 0
   m_Name: BallistaTower
   m_TagString: Untagged
@@ -597,6 +598,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-7370151879609545542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3156509735156442039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824463b79e1824279ba814bcce642a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeSound: {fileID: 8300000, guid: 4a875bb8ccf524f0da5bc25e4dec9671, type: 3}
+  upgradePanelPrefab: {fileID: 3011294613630576606, guid: 0795364544abf49c28feaa3a6c61575d, type: 3}
+  radiusPreviewPrefab: {fileID: 3626549813088479941, guid: 41c9a74c18a8a4055ada28f93a7805a7, type: 3}
+  upgradeValueList:
+  - key: 0
+    value:
+    - cost: 0
+      value: 2
+    - cost: 10
+      value: 1.8
+    - cost: 20
+      value: 1.5
+    - cost: 30
+      value: 1
+  - key: 1
+    value:
+    - cost: 0
+      value: 3
+    - cost: 30
+      value: 4
+    - cost: 50
+      value: 5
+  - key: 2
+    value:
+    - cost: 0
+      value: 15
 --- !u!1 &5146982399346624148
 GameObject:
   m_ObjectHideFlags: 0
