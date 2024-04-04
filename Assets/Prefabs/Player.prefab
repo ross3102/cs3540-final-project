@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 6513964448709809692}
   - component: {fileID: 7580812311435735384}
   m_Layer: 2
-  m_Name: Sphere
+  m_Name: PunchRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

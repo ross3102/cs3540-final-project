@@ -6963,10 +6963,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6896867556542588167, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
-      propertyPath: m_Name
-      value: PunchRange
-      objectReference: {fileID: 0}
     - target: {fileID: 7518516226437387915, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
       propertyPath: moneyText
       value: 
