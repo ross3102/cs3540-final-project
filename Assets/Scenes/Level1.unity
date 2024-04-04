@@ -3419,6 +3419,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 416517548310416708, guid: d69718e39a6ab431bbb8299b5784e104, type: 3}
   m_PrefabInstance: {fileID: 1037555881}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1037555883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8525503867327303372, guid: d69718e39a6ab431bbb8299b5784e104, type: 3}
+  m_PrefabInstance: {fileID: 1037555881}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1048608291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6563,9 +6568,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 514871343542922457, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
+      propertyPath: towerSelectPanel
+      value: 
+      objectReference: {fileID: 1037555883}
+    - target: {fileID: 514871343542922457, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
+      propertyPath: towerImages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 514871343542922457, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
       propertyPath: towerPrefabs.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 514871343542922457, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
+      propertyPath: towerImages.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: c04db0ce9c17a48b8904d1d4bfd35b7b, type: 3}
     - target: {fileID: 6624452777098273450, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
       propertyPath: m_Name
       value: Player
