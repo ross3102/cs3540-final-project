@@ -11,66 +11,35 @@ public class ClickBehavior : MonoBehaviour
     public AudioClip punchMissSFX;
 
     Animator animator;
-    bool canSwing;
+    MeleeDamage meleeDamage;
+    bool punching;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        canSwing = true;
+        meleeDamage = GetComponentInChildren<MeleeDamage>();
+        punching = false;
     }
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && canSwing)
+        if(Input.GetMouseButtonDown(0) && !punching)
         {
-            RaycastHit raycastHit;
+            if (meleeDamage.TryInteract()) return;
 
-            if (Physics.Raycast(transform.position, transform.forward, out raycastHit, 5.5f))
-            {
-                if (raycastHit.transform != null)
-                {
-                    var clicked = raycastHit.transform.gameObject;
-                    if (clicked.CompareTag("NPC"))
-                    {
-                        NPCText text = clicked.GetComponentInChildren<NPCText>();
-                        text.CycleText();
-                        return;
-                    }
-                }
-            }
-
-            canSwing = false;
-            animator.SetFloat("Speed_f", 0f);
+            punching = true;
             animator.SetInteger("WeaponType_int", 12);
 
-            Invoke("RegisterHit", 0.5f);
-            Invoke("StopSwinging", 1f);
-            
+            Invoke(nameof(RegisterHit), 0.175f);
+            Invoke(nameof(StopSwinging), 0.5f);
         }
     }
 
     private void RegisterHit()
     {
-        RaycastHit raycastHit;
-
-        if (Physics.Raycast(transform.position, transform.forward, out raycastHit, hitRange))
+        if (meleeDamage.Attack(damage))
         {
-            if (raycastHit.transform != null)
-            {
-                var clicked = raycastHit.transform.gameObject;
-                if (clicked.CompareTag("Enemy"))
-                {
-                    AudioSource.PlayClipAtPoint(punchHitSFX, Camera.main.transform.position);
-                    clicked.GetComponent<EnemyBehavior>().TakeDamage(damage);
-                } else
-                {
-                    AudioSource.PlayClipAtPoint(punchMissSFX, Camera.main.transform.position);
-                }
-            }
-            else
-            {
-                AudioSource.PlayClipAtPoint(punchMissSFX, Camera.main.transform.position);
-            }
+            AudioSource.PlayClipAtPoint(punchHitSFX, Camera.main.transform.position);
         }
         else
         {
@@ -81,6 +50,6 @@ public class ClickBehavior : MonoBehaviour
     void StopSwinging()
     {
         animator.SetInteger("WeaponType_int", 0);
-        canSwing = true;
+        punching = false;
     }
 }
