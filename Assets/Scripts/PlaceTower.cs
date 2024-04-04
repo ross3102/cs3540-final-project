@@ -52,11 +52,6 @@ public class PlaceTower : MonoBehaviour
 
     void Update()
     {
-        if (levelManager.IsPlaceTowerDisabled() || (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement && LevelManager.currentPhase != LevelManager.GamePhase.EnemyWave)) {
-            indicator.SetActive(false);
-            return;
-        }
-
         KeyCode towerKey = KeyCode.Alpha1;
         for (int i = 0; i < towerPrefabs.Length; i++)
         {
@@ -70,6 +65,11 @@ public class PlaceTower : MonoBehaviour
                 radiusPreview.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
             }
             towerKey++;
+        }
+        
+        if (levelManager.IsPlaceTowerDisabled() || (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement && LevelManager.currentPhase != LevelManager.GamePhase.EnemyWave)) {
+            indicator.SetActive(false);
+            return;
         }
 
         indicator.SetActive(true);
