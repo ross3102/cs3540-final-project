@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaceTower : MonoBehaviour
 {
     public GameObject[] towerPrefabs;
+    public Sprite[] towerImages;
     public GameObject indicatorPrefab;
     public GameObject radiusPreviewPrefab;
+    public GameObject towerOptionPrefab;
     public int baseTowerCost = 10;
     public AudioClip placeSound;
 
     public Color validColor, invalidColor;
+    public GameObject towerSelectPanel;
 
     GameObject indicator;
     Vector3 indicatorPos;
@@ -36,6 +40,14 @@ public class PlaceTower : MonoBehaviour
         money = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyManager>();
         levelManager = FindObjectOfType<LevelManager>();
         towerCost = baseTowerCost;
+
+        foreach (var towerImg in towerImages)
+        {
+            GameObject towerOptionImg = Instantiate(towerOptionPrefab, towerSelectPanel.transform);
+            towerOptionImg.transform.SetParent(towerSelectPanel.transform, false);
+            towerOptionImg.GetComponent<Image>().sprite = towerImg;
+        }
+        towerSelectPanel.transform.GetChild(towerIndex).localScale = Vector3.one * 1.25f;
     }
 
     void Update()
@@ -45,19 +57,19 @@ public class PlaceTower : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        KeyCode towerKey = KeyCode.Alpha1;
+        for (int i = 0; i < towerPrefabs.Length; i++)
         {
-            towerIndex = 0;
-            towerCost = baseTowerCost;
-            var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
-            radiusPreview.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            towerIndex = 1;
-            towerCost = baseTowerCost * 2;
-            var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
-            radiusPreview.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
+            if (Input.GetKeyDown(towerKey))
+            {
+                towerSelectPanel.transform.GetChild(towerIndex).localScale = Vector3.one;
+                towerIndex = i;
+                towerSelectPanel.transform.GetChild(towerIndex).localScale = Vector3.one * 1.25f;
+                towerCost = baseTowerCost * (i + 1);
+                var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
+                radiusPreview.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
+            }
+            towerKey++;
         }
 
         indicator.SetActive(true);
