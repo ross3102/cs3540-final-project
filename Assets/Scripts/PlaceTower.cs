@@ -45,19 +45,17 @@ public class PlaceTower : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        KeyCode towerKey = KeyCode.Alpha1;
+        for (int i = 0; i < towerPrefabs.Length; i++)
         {
-            towerIndex = 0;
-            towerCost = baseTowerCost;
-            var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
-            radiusPreview.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            towerIndex = 1;
-            towerCost = baseTowerCost * 2;
-            var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
-            radiusPreview.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
+            if (Input.GetKeyDown(towerKey))
+            {
+                towerIndex = i;
+                towerCost = baseTowerCost * (i + 1);
+                var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
+                radiusPreview.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
+            }
+            towerKey++;
         }
 
         indicator.SetActive(true);
