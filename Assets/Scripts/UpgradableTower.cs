@@ -300,4 +300,9 @@ public class UpgradableTower : MonoBehaviour
         }
         return upgradingTowers[upgradingTowers.Count - 1];
     }
+
+    public static void ResetTowers()
+    {
+        upgradingTowers.Clear();
+    }
 }

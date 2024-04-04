@@ -36,6 +36,7 @@ public class LevelManager : MonoBehaviour
         money = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyManager>();
         placeTower = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlaceTower>();
         helpText = helpTextBox.GetComponentInChildren<Text>();
+        UpgradableTower.ResetTowers();
     }
 
     void Update()
