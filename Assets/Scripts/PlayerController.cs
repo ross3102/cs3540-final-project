@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         input = transform.right * moveHorizontal + transform.forward * moveVertical;
         input *= moveSpeed;
 
-        if (input != Vector3.zero && !GetComponent<ClickBehavior>().IsPunching())
+        if (input != Vector3.zero)
         {
             animator.SetFloat("Speed_f", 0.3f);
         } else

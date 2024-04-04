@@ -28,9 +28,7 @@ public class ClickBehavior : MonoBehaviour
             if (meleeDamage.TryInteract()) return;
 
             punching = true;
-            animator.SetFloat("Speed_f", 0f);
             animator.SetInteger("WeaponType_int", 12);
-
 
             Invoke(nameof(RegisterHit), 0.175f);
             Invoke(nameof(StopSwinging), 0.5f);
@@ -53,10 +51,5 @@ public class ClickBehavior : MonoBehaviour
     {
         animator.SetInteger("WeaponType_int", 0);
         punching = false;
-    }
-
-    public bool IsPunching()
-    {
-        return punching;
     }
 }
