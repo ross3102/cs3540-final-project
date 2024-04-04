@@ -7976,6 +7976,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2524816618259557868, guid: 4c773f6ebb1cf4a48a536d1cc230dbc2, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6210738829022026765, guid: 4c773f6ebb1cf4a48a536d1cc230dbc2, type: 3}
       propertyPath: healthBar
       value: 
