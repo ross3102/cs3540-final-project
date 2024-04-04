@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class UpgradableTower : MonoBehaviour
 {
+    static List<UpgradableTower> upgradingTowers = new();
+
     public enum UpgradeType
     {
         FireRate,
@@ -82,8 +84,11 @@ public class UpgradableTower : MonoBehaviour
 
     List<GameObject> tempObjects = new();
 
+    bool isActive;
+
     void Start()
     {
+        isActive = false;
         levelManager = FindObjectOfType<LevelManager>();
         upgradesPanel = levelManager.upgradesPanel;
         shootEnemies = GetComponent<ShootEnemies>();
@@ -98,6 +103,25 @@ public class UpgradableTower : MonoBehaviour
 
     void Update()
     {
+        if (UpgradingTower() != this)
+        {
+            // just became inactive
+            if (isActive)
+            {
+                RemoveRadius();
+                isActive = false;
+            }
+            return;
+        }
+
+        // just became active
+        if (!isActive)
+        {
+            isActive = true;
+            SetupMenu();
+            ShowRadius();
+        }
+
         foreach (UpgradeType upgradeType in Enum.GetValues(typeof(UpgradeType)))
         {
             if (Input.GetKeyDown(Key(upgradeType)))
@@ -250,9 +274,8 @@ public class UpgradableTower : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SetupMenu();            
+            upgradingTowers.Add(this);
             levelManager.SetIsPlaceTowerDisabled(true);
-            ShowRadius();
         }
     }
 
@@ -260,9 +283,21 @@ public class UpgradableTower : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            upgradesPanel.SetActive(false);
-            levelManager.SetIsPlaceTowerDisabled(false);
-            RemoveRadius();
+            upgradingTowers.Remove(this);
+            if (upgradingTowers.Count == 0)
+            {
+                upgradesPanel.SetActive(false);
+                levelManager.SetIsPlaceTowerDisabled(false);
+            }
         }
+    }
+
+    static UpgradableTower UpgradingTower()
+    {
+        if (upgradingTowers.Count == 0)
+        {
+            return null;
+        }
+        return upgradingTowers[upgradingTowers.Count - 1];
     }
 }

@@ -36,7 +36,6 @@ public class EnemyBehavior : MonoBehaviour
     {
         health -= damage;
         healthBar.UpdateHealth(health, maxHealth);
-        Debug.Log("Enemy took " + damage + " damage, health: " + health);
         if (health <= 0)
         {
             Die();
