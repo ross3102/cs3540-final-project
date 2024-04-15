@@ -1,12 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class IndicatorCollisions : MonoBehaviour
 {
     List<GameObject> floorsInRange = new();
     List<GameObject> objectsInRange = new();
+
+    void Update()
+    {
+        RemoveDestroyed();
+    }
+
+    void RemoveDestroyed()
+    {
+        List<GameObject> remainingObjects = new();
+
+        foreach (GameObject obj in objectsInRange)
+        {
+            if (!obj.IsDestroyed() && obj.activeSelf)
+            {
+                remainingObjects.Add(obj);
+            }
+        }
+        
+        objectsInRange = remainingObjects;
+    }
 
     void OnTriggerEnter(Collider other)
     {
