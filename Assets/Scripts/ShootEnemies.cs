@@ -3,49 +3,40 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShootEnemies : MonoBehaviour
+public abstract class ShootEnemies : MonoBehaviour
 {
-    public float radius;
     public float fireInterval;
-    public float fireSpeed;
-    public int damage;
+    public float radius;
 
-    public GameObject projectile;
-
-    public AudioClip shootSFX;
-
-    Queue<GameObject> enemiesInRange;
-    float lastShot;
-    Transform cannonTransform;
+    protected Queue<GameObject> enemiesInRange;
     CapsuleCollider radiusTrigger;
 
-    // Start is called before the first frame update
-    void Start()
+    float lastShot;
+
+    public virtual void Start()
     {
-        enemiesInRange = new Queue<GameObject>();
-        lastShot = Time.time;
-        radiusTrigger = GetComponent<CapsuleCollider>();
-        radiusTrigger.radius = radius;
-        cannonTransform = transform.GetChild(1);
+      lastShot = Time.time;
+      enemiesInRange = new Queue<GameObject>();
+      radiusTrigger = GetComponent<CapsuleCollider>();
+      radiusTrigger.radius = radius;
     }
 
-    void Update()
+    public virtual void Update()
     {
-        radiusTrigger.radius = radius;
-        while (enemiesInRange.Count > 0 && TargetGone(enemiesInRange.Peek()))
-        {
-            enemiesInRange.Dequeue();
-        }
+      radiusTrigger.radius = radius;
 
-        if (enemiesInRange.Count > 0)
+      while (enemiesInRange.Count > 0 && TargetGone(enemiesInRange.Peek()))
+      {
+          enemiesInRange.Dequeue();
+      }
+
+      if (enemiesInRange.Count > 0) {
+        if (Time.time - lastShot > fireInterval)
         {
-            GameObject target = enemiesInRange.Peek();
-            cannonTransform.LookAt(target.transform.position + Vector3.up * 1.5f);
-            if (Time.time - lastShot > fireInterval)
-            {
-                ShootTarget();
-            }
+            ShootTarget();
+            lastShot = Time.time;
         }
+      }
     }
 
     bool TargetGone(GameObject target)
@@ -53,14 +44,7 @@ public class ShootEnemies : MonoBehaviour
         return target.IsDestroyed() || target.GetComponent<EnemyBehavior>().GetHealth() <= 0;
     }
 
-    void ShootTarget()
-    {
-        AudioSource.PlayClipAtPoint(shootSFX, transform.position);
-        GameObject newProjectile = Instantiate(projectile, cannonTransform.position, cannonTransform.rotation);
-        newProjectile.GetComponent<ProjectileBehavior>().SetDamage(damage);
-        newProjectile.GetComponent<Rigidbody>().AddForce(cannonTransform.forward * fireSpeed, ForceMode.VelocityChange);
-        lastShot = Time.time;
-    }
+    public abstract void ShootTarget();
 
     void OnTriggerEnter(Collider other)
     {
@@ -76,5 +60,17 @@ public class ShootEnemies : MonoBehaviour
         {
             enemiesInRange.Dequeue();
         }
+    }   
+
+    public void UpgradeRadius(float newRadius)
+    {
+        radius = newRadius;
     }
+
+    public void UpgradeFireInterval(float newFireInterval)
+    {
+        fireInterval = newFireInterval;
+    }
+
+    public abstract void UpgradeDamage(int newDamage);
 }
