@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -26,7 +27,7 @@ public class LevelManager : MonoBehaviour
     float countDownTime;
     MoneyManager money;
     PlaceTower placeTower;
-    Text helpText;
+    TextMeshProUGUI helpText;
     bool isPlaceTowerDisabled = false;
 
     void Start()
@@ -35,7 +36,7 @@ public class LevelManager : MonoBehaviour
         currentPhase = GamePhase.TowerPlacement;
         money = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyManager>();
         placeTower = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlaceTower>();
-        helpText = helpTextBox.GetComponentInChildren<Text>();
+        helpText = helpTextBox.GetComponentInChildren<TextMeshProUGUI>();
         UpgradableTower.ResetTowers();
     }
 
