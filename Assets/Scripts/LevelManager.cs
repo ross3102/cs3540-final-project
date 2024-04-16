@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -108,7 +109,17 @@ public class LevelManager : MonoBehaviour
 
     void LoadNextLevel()
     {
-        if (!string.IsNullOrEmpty(nextLevel))
+        if (string.IsNullOrEmpty(nextLevel))
+        {
+            PlayerPrefs.SetInt("wins", PlayerPrefs.GetInt("wins", 0) + 1);
+            var finalMoney = money.GetMoneyAmount();
+            if (finalMoney > PlayerPrefs.GetInt("highScore", 0))
+            {
+                PlayerPrefs.SetInt("highScore", finalMoney);
+            }
+            SceneManager.LoadScene(0);
+        }
+        else
         {
             MoneyManager.restart = false;
             SceneManager.LoadScene(nextLevel);
