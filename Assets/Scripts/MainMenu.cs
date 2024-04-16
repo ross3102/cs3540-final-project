@@ -5,9 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void StartGame()
+    void Start()
+    {
+        int level = PlayerPrefs.GetInt("level", -1);
+        if (level == -1)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
+    public void Continue()
+    {
+        int level = PlayerPrefs.GetInt("level", 1);
+        SceneManager.LoadScene(level);
+    }
+
+    public void NewGame()
     {
         PlayerPrefs.SetInt("attempts", PlayerPrefs.GetInt("attempts", 0) + 1);
+        PlayerPrefs.SetInt("level", 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

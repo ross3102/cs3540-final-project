@@ -117,11 +117,13 @@ public class LevelManager : MonoBehaviour
             {
                 PlayerPrefs.SetInt("highScore", finalMoney);
             }
+            PlayerPrefs.SetInt("level", -1);
             SceneManager.LoadScene(0);
         }
         else
         {
             MoneyManager.restart = false;
+            PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
             SceneManager.LoadScene(nextLevel);
         }
     }
