@@ -110,12 +110,14 @@ public class LevelManager : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(nextLevel))
         {
+            MoneyManager.restart = false;
             SceneManager.LoadScene(nextLevel);
         }
     }
 
     void LoadCurrentLevel()
     {
+        MoneyManager.restart = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
