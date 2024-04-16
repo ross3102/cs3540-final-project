@@ -617,9 +617,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d9724fc5a6549caafc6c75ec4a0b1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 8
   lootPrefab: {fileID: 4729912602369655075, guid: 83ddec07a83ea46479fd3b6b726c8bbd, type: 3}
   deathSFX: {fileID: 8300000, guid: 781db39cb3a8849749aab2212ca343e6, type: 3}
+  minDropVal: 1
+  maxDropVal: 15
+  dropRate: 10
 --- !u!65 &479696039374837172
 BoxCollider:
   m_ObjectHideFlags: 0
