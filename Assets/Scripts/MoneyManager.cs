@@ -8,12 +8,12 @@ public class MoneyManager : MonoBehaviour
     public int startingMoney = 10;
     public Text moneyText;
 
-    int money;
+    static int money = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        money = startingMoney;
+        money += startingMoney;
         SetMoneyText();
     }
 
