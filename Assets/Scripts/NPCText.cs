@@ -10,11 +10,13 @@ public class NPCText : MonoBehaviour
 
     private string[] helpMessages = {
         "I'm King Quesadilla! Click me if you need any help.",
+        "The Kingdom of El Jefes is under attack by Plomites! Kill the enemies before they reach the castle!",
+        "Luckily, you are a knight in the kingdom's engineering regiment! Build towers using right click to help defeat the enemy.",
+        "I suspect the Plomites are trying to steal our guacamole recipe...",
         "Kill enemies to collect gold and build more towers.",
         "Place towers strategically to maximize damage area.",
-        "Awfully nice weather today isn't it.",
+        "Awfully nice weather today isn't it. No wonder the Plomites chose to attack today.",
         "Punch enemies if they exit your tower range!",
-        "Kill the enemies before they reach the tower!"
     };
 
     private int currentIndex;
