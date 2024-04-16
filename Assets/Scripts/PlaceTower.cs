@@ -27,12 +27,15 @@ public class PlaceTower : MonoBehaviour
     int towerIndex = 0;
 
     int towerCost;
+
+    IndicatorCollisions indicatorCollisions;
     
     void Start()
     {
         indicator = new GameObject("Indicator");
         var indicatorSquare = Instantiate(indicatorPrefab, indicator.transform.position, Quaternion.identity);
         indicatorSquare.transform.SetParent(indicator.transform);
+        indicatorCollisions = indicatorSquare.GetComponent<IndicatorCollisions>();
         var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
         radiusPreviewPrefab.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
         radiusPreview = Instantiate(radiusPreviewPrefab, indicator.transform.position, Quaternion.identity);
@@ -68,6 +71,7 @@ public class PlaceTower : MonoBehaviour
         }
         
         if (levelManager.IsPlaceTowerDisabled() || (LevelManager.currentPhase != LevelManager.GamePhase.TowerPlacement && LevelManager.currentPhase != LevelManager.GamePhase.EnemyWave)) {
+            indicatorCollisions.RemoveAll();
             indicator.SetActive(false);
             return;
         }
@@ -100,17 +104,11 @@ public class PlaceTower : MonoBehaviour
 
     bool CanPlaceTower()
     {
-        RaycastHit hit;
         if (!money.HasAtLeast(towerCost))
         {
             return false;
         }
-        if (!Physics.Raycast(transform.position, transform.forward, out hit, 50f))
-        {
-            return false;
-        }
-        if (!hit.collider.CompareTag("Floor"))
-        {
+        if (!indicatorCollisions.CanPlace()) {
             return false;
         }
 
