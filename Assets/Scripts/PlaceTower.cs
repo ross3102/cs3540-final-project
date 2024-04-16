@@ -53,6 +53,10 @@ public class PlaceTower : MonoBehaviour
             towerOption.transform.SetParent(towerSelectPanel.transform, false);
             towerOption.GetComponent<Image>().sprite = towerImg;
             towerOption.transform.Find("Key").GetComponentInChildren<TextMeshProUGUI>().text = (i + 1).ToString();
+            if (i == 0)
+            {
+                towerOption.transform.Find("Key").gameObject.SetActive(false);
+            }
             towerOption.transform.Find("CostText").GetComponent<TextMeshProUGUI>().text = "$" + (baseTowerCost * (i + 1)).ToString();
         }
         towerSelectPanel.transform.GetChild(towerIndex).localScale = Vector3.one * 1.25f;
@@ -66,8 +70,10 @@ public class PlaceTower : MonoBehaviour
             if (Input.GetKeyDown(towerKey))
             {
                 towerSelectPanel.transform.GetChild(towerIndex).localScale = Vector3.one;
+                towerSelectPanel.transform.GetChild(towerIndex).Find("Key").gameObject.SetActive(true);
                 towerIndex = i;
                 towerSelectPanel.transform.GetChild(towerIndex).localScale = Vector3.one * 1.25f;
+                towerSelectPanel.transform.GetChild(towerIndex).Find("Key").gameObject.SetActive(false);
                 towerCost = baseTowerCost * (i + 1);
                 var towerDiameter = towerPrefabs[towerIndex].GetComponent<ShootEnemies>().radius * 2;
                 radiusPreview.transform.localScale = new Vector3(towerDiameter, 1, towerDiameter);
