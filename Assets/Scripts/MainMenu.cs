@@ -7,6 +7,9 @@ public class MainMenu : MonoBehaviour
 {
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         int level = PlayerPrefs.GetInt("level", -1);
         if (level == -1)
         {
