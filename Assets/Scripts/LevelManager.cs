@@ -15,14 +15,16 @@ public class LevelManager : MonoBehaviour
     }
 
     public static bool isGameOver;
-    public static int enemiesRemaining = 0;
+    public static int[] enemiesRemaining;
     public static GamePhase currentPhase;
+    public static int wave = 0;
 
     public Text gameText;
     public GameObject helpTextBox;
     public GameObject upgradesPanel;
     public string nextLevel;
     public float totalCountDownTime = 5;
+    public int totalWaves = 1;
 
     float countDownTime;
     MoneyManager money;
@@ -30,10 +32,16 @@ public class LevelManager : MonoBehaviour
     TextMeshProUGUI helpText;
     bool isPlaceTowerDisabled = false;
 
+    void Awake()
+    {
+        enemiesRemaining = new int[totalWaves];
+    }
+
     void Start()
     {
         isGameOver = false;
         currentPhase = GamePhase.TowerPlacement;
+        wave = 0;
         money = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyManager>();
         placeTower = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlaceTower>();
         helpText = helpTextBox.GetComponentInChildren<TextMeshProUGUI>();
@@ -57,7 +65,7 @@ public class LevelManager : MonoBehaviour
     {
         if (!money.HasAtLeast(placeTower.GetCurrentTowerCost()))
         {
-            helpText.text = "Your funds are low! Press E to start the enemy wave";
+            helpText.text = "Your funds are low! Press E to start wave " + (wave+1).ToString() + "!";
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -121,10 +129,32 @@ public class LevelManager : MonoBehaviour
 
     public void EnemyDestroyed()
     {
-        enemiesRemaining--;
-        if (enemiesRemaining <= 0)
+        enemiesRemaining[wave]--;
+        if (enemiesRemaining[wave] <= 0)
+        {
+            WaveBeat();
+        }
+    }
+
+    void WaveBeat()
+    {
+        wave++;
+        if (wave == totalWaves)
         {
             LevelBeat();
+        }
+        else
+        {
+            currentPhase = GamePhase.TowerPlacement;
+            if (!money.HasAtLeast(placeTower.GetCurrentTowerCost()))
+            {
+                helpText.text = "Your funds are low! Press E to start wave " + (wave+1).ToString() + "!";
+            }
+            else
+            {
+                helpText.text  = "Right click to place towers, and then press E to confirm and begin the enemy wave";
+            }
+            helpTextBox.SetActive(true);
         }
     }
 
