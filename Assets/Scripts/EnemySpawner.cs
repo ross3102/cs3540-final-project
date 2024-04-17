@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public int numEnemies = 5;
     public float enemySpeed = 1;
     public bool spawnOnStart = true;
+    public int wave = 0;
 
     public GameObject enemyPrefab;
 
@@ -22,12 +23,12 @@ public class EnemySpawner : MonoBehaviour
         if (objective == null) {
             objective = GameObject.FindGameObjectWithTag("Objective");
         }
-        LevelManager.enemiesRemaining += numEnemies;
+        FindObjectOfType<LevelManager>().enemiesRemaining[wave] += numEnemies;
     }
 
     void Update()
     {
-        if (LevelManager.currentPhase != LevelManager.GamePhase.EnemyWave) return;
+        if (LevelManager.currentPhase != LevelManager.GamePhase.EnemyWave || LevelManager.wave != wave) return;
         if (!spawning)
         {
             spawning = true;

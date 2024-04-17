@@ -1522,11 +1522,11 @@ PrefabInstance:
       objectReference: {fileID: 207672608}
     - target: {fileID: 514871343542922457, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
       propertyPath: towerImages.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 514871343542922457, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
       propertyPath: towerPrefabs.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 514871343542922457, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
       propertyPath: towerImages.Array.data[0]
@@ -1537,6 +1537,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 7d574e71b912a44d8bb22d960ed8ab57, type: 3}
     - target: {fileID: 514871343542922457, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
+      propertyPath: towerImages.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7fa3e7bcd49e54efbb59ab64bc80df5e, type: 3}
+    - target: {fileID: 514871343542922457, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
       propertyPath: towerPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 574156200504944524, guid: 9a2f3bdd26e7f426fa441d6c60bbbb6e, type: 3}
@@ -1544,6 +1548,10 @@ PrefabInstance:
       propertyPath: towerPrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 3156509735156442039, guid: 1b33bc65d0279443ca6c4717b2722218, type: 3}
+    - target: {fileID: 514871343542922457, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
+      propertyPath: towerPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 574156200504944524, guid: e4db28b05c2f748a680be5e1a872bf72, type: 3}
     - target: {fileID: 6624452777098273450, guid: 206984ee541b847bbb4f10aca7e53b48, type: 3}
       propertyPath: m_Name
       value: Player
