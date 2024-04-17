@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.SetInt("attempts", PlayerPrefs.GetInt("attempts", 0) + 1);
         PlayerPrefs.SetInt("level", 1);
+        PlayerPrefs.SetInt("money", 0);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
