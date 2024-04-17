@@ -228,13 +228,13 @@ public class UpgradableTower : MonoBehaviour
         switch (upgradeType)
         {
             case UpgradeType.FireRate:
-                shootEnemies.fireInterval = upgrades[level].value;
+                shootEnemies.UpgradeFireInterval(upgrades[level].value);
                 break;
             case UpgradeType.Damage:
-                shootEnemies.damage = upgrades[level].intValue;
+                shootEnemies.UpgradeDamage(upgrades[level].intValue);
                 break;
             case UpgradeType.Radius:
-                shootEnemies.radius = upgrades[level].intValue;
+                shootEnemies.UpgradeRadius(upgrades[level].intValue);
                 break;
         }
         upgradeLevels[upgradeType] = level;
