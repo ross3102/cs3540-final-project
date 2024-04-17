@@ -16,7 +16,6 @@ public class LevelManager : MonoBehaviour
     }
 
     public static bool isGameOver;
-    public static int[] enemiesRemaining;
     public static GamePhase currentPhase;
     public static int wave = 0;
 
@@ -26,6 +25,8 @@ public class LevelManager : MonoBehaviour
     public string nextLevel;
     public float totalCountDownTime = 5;
     public int totalWaves = 1;
+
+    public int[] enemiesRemaining;
 
     float countDownTime;
     MoneyManager money;

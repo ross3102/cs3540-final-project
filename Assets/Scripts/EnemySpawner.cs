@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
         if (objective == null) {
             objective = GameObject.FindGameObjectWithTag("Objective");
         }
-        LevelManager.enemiesRemaining[wave] += numEnemies;
+        FindObjectOfType<LevelManager>().enemiesRemaining[wave] += numEnemies;
     }
 
     void Update()
