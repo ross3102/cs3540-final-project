@@ -10,7 +10,8 @@ public class KingAI : MonoBehaviour
     {
         Wander,
         Chase,
-        Dialogue
+        Dialogue,
+        RoundStart
     }
 
     public FSMStates currentState;
@@ -23,7 +24,7 @@ public class KingAI : MonoBehaviour
     public float dialogueRange = 5f;
 
     public Transform npcEyes;
-    public float fov = 200f;
+    public float fov = 250f;
 
     int currentDestinationIndex = 0;
 
@@ -33,6 +34,8 @@ public class KingAI : MonoBehaviour
 
     private NPCText text;
 
+    public bool roundStart;
+
 
     void Start()
     {
@@ -40,6 +43,11 @@ public class KingAI : MonoBehaviour
 
         anim = GetComponent<Animator>();
         anim.SetInteger("WeaponType_int", 0);
+
+        chaseDistance = 10f;
+        dialogueRange = 5f;
+
+        roundStart = false;
 
         currentState = FSMStates.Wander;
 
@@ -54,8 +62,7 @@ public class KingAI : MonoBehaviour
 
     void Update()
     {
-
-        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position); ;
+        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position); 
 
         switch (currentState)
         {
@@ -68,6 +75,31 @@ public class KingAI : MonoBehaviour
             case FSMStates.Dialogue:
                 UpdateDialogueState();
                 break;
+            case FSMStates.RoundStart:
+                UpdateRoundStart();
+                break;
+        }
+
+    }
+
+    void UpdateRoundStart()
+    {
+        text.ShowText(true);
+        nextDestination = GameObject.FindGameObjectWithTag("StandPoint").transform.position;
+
+        if (Vector3.Distance(transform.position, nextDestination) < 1)
+        {
+            FaceTarget(player.transform.position);
+            anim.SetFloat("Speed_f", 0f);
+            anim.SetInteger("Animation_int", 1);
+        } else
+        {
+            anim.SetFloat("Speed_f", 0.4f);
+            anim.SetInteger("Animation_int", 0);
+            FaceTarget(nextDestination);
+            agent.SetDestination(nextDestination);
+            agent.stoppingDistance = 1;
+            agent.speed = 3f;
         }
     }
 
@@ -92,6 +124,11 @@ public class KingAI : MonoBehaviour
             {
                 currentState = FSMStates.Chase;
             }
+        }
+
+        if (roundStart)
+        {
+            currentState = FSMStates.RoundStart;
         }
 
         FaceTarget(nextDestination);
@@ -124,6 +161,11 @@ public class KingAI : MonoBehaviour
             currentState = FSMStates.Wander;
         }
 
+        if (roundStart)
+        {
+            currentState = FSMStates.RoundStart;
+        }
+
         FaceTarget(nextDestination);
     }
 
@@ -149,6 +191,11 @@ public class KingAI : MonoBehaviour
         else if (distanceToPlayer > chaseDistance)
         {
             currentState = FSMStates.Wander;
+        }
+
+        if (roundStart)
+        {
+            currentState = FSMStates.RoundStart;
         }
 
         FaceTarget(nextDestination);

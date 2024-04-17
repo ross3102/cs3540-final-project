@@ -108,7 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6dde47596415415fb356a6b47fc6ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 200
 --- !u!114 &514871343542922457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,7 +456,8 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1958104110693357558, guid: 103dc487d6b30b747b419331541145e9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 405834, guid: 103dc487d6b30b747b419331541145e9, type: 3}
