@@ -111,21 +111,29 @@ public class LevelManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(nextLevel))
         {
-            PlayerPrefs.SetInt("wins", PlayerPrefs.GetInt("wins", 0) + 1);
-            var finalMoney = money.GetMoneyAmount();
-            if (finalMoney > PlayerPrefs.GetInt("highScore", 0))
-            {
-                PlayerPrefs.SetInt("highScore", finalMoney);
-            }
-            PlayerPrefs.SetInt("level", -1);
-            SceneManager.LoadScene(0);
+            Win();
         }
         else
         {
             MoneyManager.restart = false;
             PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
+            PlayerPrefs.SetInt("money", money.GetMoneyAmount());
             SceneManager.LoadScene(nextLevel);
         }
+    }
+
+    void Win()
+    {
+        PlayerPrefs.SetInt("wins", PlayerPrefs.GetInt("wins", 0) + 1);
+        var finalMoney = money.GetMoneyAmount();
+        if (finalMoney > PlayerPrefs.GetInt("highScore", 0))
+        {
+            PlayerPrefs.SetInt("highScore", finalMoney);
+        }
+        PlayerPrefs.SetInt("level", -1);
+        PlayerPrefs.SetInt("money", 0);
+        MoneyManager.money = 0;
+        SceneManager.LoadScene(0);
     }
 
     void LoadCurrentLevel()

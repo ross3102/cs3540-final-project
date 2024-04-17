@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
     public void Continue()
     {
         int level = PlayerPrefs.GetInt("level", 1);
+        MoneyManager.money = PlayerPrefs.GetInt("money", 0);
         SceneManager.LoadScene(level);
     }
 
