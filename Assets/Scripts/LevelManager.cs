@@ -178,6 +178,9 @@ public class LevelManager : MonoBehaviour
             {
                 helpText.text  = "Well done! But there's more... Press E to start wave " + (wave+1).ToString() + "!";
             }
+            gameText.text = "Wave Cleared!";
+            gameText.gameObject.SetActive(true);
+            Invoke(nameof(HideText), 1);
             helpTextBox.SetActive(true);
         }
     }
