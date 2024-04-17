@@ -33,8 +33,12 @@ public class ProjectileShooter : ShootEnemies
     {
         AudioSource.PlayClipAtPoint(shootSFX, transform.position);
         GameObject newProjectile = Instantiate(projectile, cannonTransform.position, cannonTransform.rotation);
-        newProjectile.GetComponent<ProjectileBehavior>().SetDamage(damage);
-        newProjectile.GetComponent<Rigidbody>().AddForce(cannonTransform.forward * fireSpeed, ForceMode.VelocityChange);
+        if (newProjectile != null)
+        {
+            newProjectile.GetComponent<ProjectileBehavior>().SetDamage(damage);
+            newProjectile.GetComponent<Rigidbody>().AddForce(cannonTransform.forward * fireSpeed, ForceMode.VelocityChange);
+        }
+        
     }
 
     override public void UpgradeDamage(int newDamage)

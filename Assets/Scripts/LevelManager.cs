@@ -156,11 +156,18 @@ public class LevelManager : MonoBehaviour
 
     public void EnemyDestroyed()
     {
-        enemiesRemaining[wave]--;
-        if (enemiesRemaining[wave] <= 0)
+        try
         {
-            WaveBeat();
+            enemiesRemaining[wave]--;
+            if (enemiesRemaining[wave] <= 0)
+            {
+                WaveBeat();
+            }
+        } catch (Exception e)
+        {
+            Debug.Log(e);
         }
+        
     }
 
     void WaveBeat()
