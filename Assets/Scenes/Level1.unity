@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.561825, g: 0.7220554, b: 0.81800115, a: 1}
+  m_IndirectSpecularColor: {r: 0.5618946, g: 0.7220881, b: 0.8180075, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1764,6 +1764,7 @@ MonoBehaviour:
   nextLevel: Level2
   totalCountDownTime: 5
   totalWaves: 3
+  enemiesRemaining: 
 --- !u!4 &339025935
 Transform:
   m_ObjectHideFlags: 0
@@ -4845,12 +4846,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
+      propertyPath: spawnTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: enemySpeed
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: numEnemies
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: enemyPrefab
@@ -7791,7 +7796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: spawnTime
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: enemySpeed
@@ -7799,7 +7804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: numEnemies
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: enemyPrefab
@@ -8865,7 +8870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: numEnemies
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: enemyPrefab

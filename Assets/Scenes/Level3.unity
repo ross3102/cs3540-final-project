@@ -787,6 +787,8 @@ MonoBehaviour:
   upgradesPanel: {fileID: 390485382}
   nextLevel: 
   totalCountDownTime: 5
+  totalWaves: 1
+  enemiesRemaining: 
 --- !u!4 &339025935
 Transform:
   m_ObjectHideFlags: 0
@@ -6308,11 +6310,15 @@ PrefabInstance:
       objectReference: {fileID: 960361908}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: spawnTime
-      value: 20
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: enemySpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
+      propertyPath: numEnemies
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2360518831102913928, guid: 4acc63090afc54e43ad501e07188eb47, type: 3}
       propertyPath: enemyPrefab
