@@ -11,6 +11,8 @@ TagManager:
   - UpgradesPanel
   - NPC
   - WanderPoint
+  - Tower
+  - StandPoint
   layers:
   - Default
   - TransparentFX

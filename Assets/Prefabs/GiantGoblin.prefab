@@ -533,7 +533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 453742, guid: 7bb0e29cc0dfc1242a37465798c3e47b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.0674839
       objectReference: {fileID: 0}
     - target: {fileID: 453742, guid: 7bb0e29cc0dfc1242a37465798c3e47b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -541,7 +541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 453742, guid: 7bb0e29cc0dfc1242a37465798c3e47b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.369377
       objectReference: {fileID: 0}
     - target: {fileID: 453742, guid: 7bb0e29cc0dfc1242a37465798c3e47b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -590,6 +590,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 194614, guid: 7bb0e29cc0dfc1242a37465798c3e47b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5902005027935699892}
+    - targetCorrespondingSourceObject: {fileID: 194614, guid: 7bb0e29cc0dfc1242a37465798c3e47b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 97534481276792120}
   m_SourcePrefab: {fileID: 100100000, guid: 7bb0e29cc0dfc1242a37465798c3e47b, type: 3}
 --- !u!4 &4625184623297703134 stripped
 Transform:
@@ -680,3 +683,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &97534481276792120
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4625184623297968262}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 1.84, y: 0.32, z: 1.84}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.27, z: 0}
+  m_TimeToStationary: 0.5
