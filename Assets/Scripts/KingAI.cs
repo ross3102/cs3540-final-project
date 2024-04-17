@@ -82,12 +82,6 @@ public class KingAI : MonoBehaviour
 
     }
 
-    //public void IncreaseDistance()
-    //{
-    //    chaseDistance = 20f;
-    //    dialogueRange = 10f;
-    //}
-
     void UpdateRoundStart()
     {
         text.ShowText(true);
@@ -107,10 +101,6 @@ public class KingAI : MonoBehaviour
             agent.stoppingDistance = 1;
             agent.speed = 3f;
         }
-
-        Debug.Log(Vector3.Distance(transform.position, nextDestination));
-
-        FaceTarget(player.transform.position);
     }
 
     void UpdateWanderState()
