@@ -62,6 +62,9 @@ public class LevelManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            KingAI kingAI = GameObject.FindGameObjectWithTag("NPC").GetComponent<KingAI>();
+            kingAI.IncreaseDistance();
+
             currentPhase = GamePhase.CountDown;
             helpTextBox.SetActive(false);
             countDownTime = totalCountDownTime;

@@ -23,7 +23,7 @@ public class KingAI : MonoBehaviour
     public float dialogueRange = 5f;
 
     public Transform npcEyes;
-    public float fov = 200f;
+    public float fov = 250f;
 
     int currentDestinationIndex = 0;
 
@@ -40,6 +40,9 @@ public class KingAI : MonoBehaviour
 
         anim = GetComponent<Animator>();
         anim.SetInteger("WeaponType_int", 0);
+
+        chaseDistance = 10f;
+        dialogueRange = 5f;
 
         currentState = FSMStates.Wander;
 
@@ -69,6 +72,12 @@ public class KingAI : MonoBehaviour
                 UpdateDialogueState();
                 break;
         }
+    }
+
+    public void IncreaseDistance()
+    {
+        chaseDistance = 20f;
+        dialogueRange = 10f;
     }
 
     void UpdateWanderState()
