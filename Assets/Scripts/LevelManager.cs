@@ -179,8 +179,11 @@ public class LevelManager : MonoBehaviour
             }
             else
             {
-                helpText.text  = "Right click to place towers, and then press E to confirm and begin the enemy wave";
+                helpText.text  = "Well done! But there's more... Press E to start wave " + (wave+1).ToString() + "!";
             }
+            gameText.text = "Wave Cleared!";
+            gameText.gameObject.SetActive(true);
+            Invoke(nameof(HideText), 1);
             helpTextBox.SetActive(true);
         }
     }
