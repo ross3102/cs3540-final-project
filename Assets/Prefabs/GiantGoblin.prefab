@@ -629,6 +629,9 @@ MonoBehaviour:
   maxHealth: 20
   lootPrefab: {fileID: 4729912602369655075, guid: 83ddec07a83ea46479fd3b6b726c8bbd, type: 3}
   deathSFX: {fileID: 8300000, guid: 781db39cb3a8849749aab2212ca343e6, type: 3}
+  minDropVal: 15
+  maxDropVal: 30
+  dropRate: 15
 --- !u!65 &2232300842511329412
 BoxCollider:
   m_ObjectHideFlags: 0

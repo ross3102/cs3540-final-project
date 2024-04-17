@@ -9,6 +9,10 @@ public class EnemyBehavior : MonoBehaviour
     public GameObject lootPrefab;
     public AudioClip deathSFX;
 
+    public int minDropVal;
+    public int maxDropVal;
+    public int dropRate; // Higher = higher chance of dropping
+
     Animator animator;
     FollowPath followPath;
     HealthBar healthBar;
@@ -45,8 +49,14 @@ public class EnemyBehavior : MonoBehaviour
     void Die()
     {
         animator.SetTrigger("Death_b");
+
         followPath.SetSpeed(0);
         GetComponent<Collider>().enabled = false;
+
+        PickupBehavior pickup = lootPrefab.GetComponent<PickupBehavior>();
+        pickup.minVal = minDropVal;
+        pickup.maxVal = maxDropVal;
+
         Invoke("DestroyEnemy", 2.5f);
         FindObjectOfType<LevelManager>().EnemyDestroyed();
         AudioSource.PlayClipAtPoint(deathSFX, transform.position);
@@ -54,9 +64,9 @@ public class EnemyBehavior : MonoBehaviour
 
     void DestroyEnemy()
     {
-        int dropRate = Random.Range(0, 6);
+        int dropVal = Random.Range(0, dropRate);
 
-        if (dropRate > 3)
+        if (dropVal > 3)
         {
             Instantiate(lootPrefab, transform.position, transform.rotation);
         }
